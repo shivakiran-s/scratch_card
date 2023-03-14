@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<!-- <html> -->
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+  * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+        font-family: 'Poppins', sans-serif;
+        overflow: hidden;
+      }
+.scratchcard {
+        display:none;
+        
+      }
+#form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0;
+}
+
+form {
+  height: 300px;
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border-radius: 0;
+  text-align: center;
+  padding-top: 4em;
+  font-family: 'Sans-serif';
+  font-size: 1.4em;
+  color: #ffffff;
+  text-shadow: 0 0.1em 0.2em rgba(255, 255, 255, 0.4);
+  border-radius: 0;
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-weight: 400;
+}
+
+input[type="text"] {
+  border: 1px solid #cccccc;
+  border-radius: 0;
+  font-size: 20px;
+  font-weight: 800;
+  padding: 3px;
+  width: 100%;
+  margin-bottom: 5px;
+  color: #0143b5;
+  text-align: center;
+  box-shadow: 0 0.3em 0.6em rgba(0, 0, 1, 0.486);
+
+}
+
+button {
+  background-color: #2bff32;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 8px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 1px;
+  box-shadow: 0 0.3em 0.6em rgba(0, 0, 1, 0.486);
+
+}
+
+button:hover {
+  background-color: #00ff08;
+}
+
+.message {
+  font-size: 18px;
+  margin-top: 1em;
+  text-align: center;
+  border-radius: 0;
+  font-weight: 400;
+}
+
+.message.success {
+  color: #00ff3c;
+}
+
+.message.failure {
+  color: #ffffff;
+  font-size: 0.6em;
+}
+.coupon {
+  font-size:1em;
+}
+
+.containerX {
+  width: 35em;
+  height: 40em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(130deg, #1900ff, #ff0000);
+}
+.base,
+#scratch {
+  margin-top: 10em;
+  height: 100px;
+  width: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  cursor: grab;
+  border-radius: 0;
+}
+
+.base {
+  background: linear-gradient(353deg, #ffffff, #ffffff); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.3em 0.6em rgba(0, 0, 1, 0.686);
+}
+
+.base h3 {
+  font-weight: 1600;
+  font-size: 2.5em;
+  color: rgb(0, 0, 46);
+  text-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.316);
+  font-family: sans-serif;
+}
+
+.base h4 {
+  font-weight: 800;
+  font-size: 0.8em;
+  color: rgb(0, 18, 180);  
+  text-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.147);
+}
+
+.base h2 {
+  font-weight: 400;
+  font-size: 0.95em;
+  color: #0000004d;
+  text-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.3);
+}
+
+/* #scratch {
+    max-height: 500px;
+
+    position: absolute;
+    align-content: center;
+    touch-action: auto;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    /* margin-left: 120px; */
+    /* margin-right: auto; */
+    /* display: block; optional, to remove default margin and padding */
+    /* } */ */
+
+#scratch {
+max-height: 500px;
+
+position: absolute;
+align-content: auto;
+touch-action: auto;
+user-select: none;
+-webkit-tap-highlight-color: transparent;
+/* margin-left: 120px; */
+margin-right: auto;
+/* display: block; optional, to remove default margin and padding */
+}
+
+.brand {
+  font-weight: 700;
+  text-align: center;
+  padding-top: 2.5em;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8em;  
+  color: #ffffff;
+  text-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.4);
+}
+
+.brand h4 {
+  font-weight: 800;
+  color: var(--primary-color);
+}
+img {
+    /* border-radius: 25px; */
+    position: relative;
+    width: 18em;
+    height: 7.2em;
+    display: block;
+    margin: 0 auto;
+    padding: 0.8em;
+    margin-top: 1.5em;
+    /* background: linear-gradient(353deg, #ffffff, #ffffff);  */
+    }
+   
+
+</style>
+  </head>
+  <body>
+    <div class="containerX" >
+        <div class="d-flex justify-content-center align-items-center flex-column" id="tsparticles">
+            <div class="col-md-6 justify-content-between">
+      <div id="form-containerX">
+        <div class="brand">SCRATCH TO WIN</div>
+        <div>
+            <img src="./logo_eb.png" alt="Description of Image">
+        </div>
+        <form class="form" onsubmit="event.preventDefault()">
+          <label for="mobileNumber">ENTER YOUR REG.MOBILE NUMBER</label>
+          <input type="text" class="mobileNumber" id="mobileNumber" name="mobileNumber" />  
+          <button type="submit" onclick="validateMobileNumber()">Submit</button>    
+          <div class="message" id="message"></div>
+        </form>
+        <div class="scratchcard" id="scratchcard" style="overflow-wrap: break-word;">
+          <div class="base"  >
+            <h2>You Won</h2>
+            <h4><span id="coupon" class="coupon"></span></h4>
+          </div>
+          <div>
+            <canvas id="scratch" width="200px" height="80px"></canvas>
+          </div>
+          
+        </div>     
+      </div>
+            </div>
+        </div>
+    </div>
+<script src="https://apis.google.com/js/api.js"></script>
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+<!-- Add additional services that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+<!-- Add the Firebase Realtime Database SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-database.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/confetti-js/dist/confetti.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/confetti-js/dist/confetti.min.js"></script> -->
+<!-- <script src="script.js"></script> -->
+<!-- <script src="confetti.js"></script> 
+<script src="path/to/confetti.min.js"></script> -->
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-move-base@2/tsparticles.move.base.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-plugin-emitters@2/tsparticles.plugin.emitters.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-circle@2/tsparticles.shape.circle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-square@2/tsparticles.shape.square.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-angle@2/tsparticles.updater.angle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-color@2/tsparticles.updater.color.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-life@2/tsparticles.updater.life.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-opacity@2/tsparticles.updater.opacity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-out-modes@2/tsparticles.updater.out-modes.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-roll@2/tsparticles.updater.roll.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-size@2/tsparticles.updater.size.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-tilt@2/tsparticles.updater.tilt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-wobble@2/tsparticles.updater.wobble.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@2/tsparticles.preset.confetti.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@2/tsparticles.preset.confetti.bundle.min.js"></script>
+
+<script>
+function validateMobileNumber() {
+  const mobileNumber = document.getElementById('mobileNumber').value;
+  const mobileNumberRegex = /^[6789]\d{9}$/; // Regular expression for 10-digit Indian mobile numbers
+  if (mobileNumberRegex.test(mobileNumber)) {
+    checkMobileNumber(mobileNumber);
+  } else {
+    showMessage('Invalid mobile number!', 'failure');
+  }
+}
+let headerRow2 = [];
+let headerRow3 = [];
+let rowData2 = [];
+let rowData3 = [];
+function checkMobileNumber(mobileNumber) {
+const sheetUrl = 'https://docs.google.com/spreadsheets/d/1KmBmAv7MVxnWNy0nkuDFg05mCDZXXaxTi3dDSmyilwI/gviz/tq?tqx=out:json';
+fetch(sheetUrl)
+    .then(response => response.text())
+    .then(data => {
+        const parsedData2 = JSON.parse(data.substr(47).slice(0, -2));
+        const headerRow2 = parsedData2.table.cols.map(col => col.label);
+        const headerRow3 = parsedData2.table.cols.map(col => col.label);
+        const rowIndex2 = headerRow2.indexOf('Mobile2');
+        const rowIndex3 = headerRow3.indexOf('Status');
+        const rowData2 = parsedData2.table.rows.map(row => row.c[rowIndex2]?.v).filter(Boolean);
+        const rowData3 = parsedData2.table.rows.map(row => row.c[rowIndex3]?.v).filter(Boolean);
+        const index2 = rowData2.indexOf('91'+ mobileNumber);
+        if (index2 !== -1) {
+            const status = rowData3[index2];
+            showMessage('CONGRATULATIONS!', 'success');
+            showScratchCard(rowData3, index2);
+            const firebaseConfig = {
+            apiKey: "AIzaSyAdd2jX9XIMB9nH0O4PInOegmusDHIbVcQ",
+            authDomain: "scratchdb-e554b.firebaseapp.com",
+            databaseURL: "https://scratchdb-e554b-default-rtdb.firebaseio.com",
+            projectId: "scratchdb-e554b",
+            storageBucket: "scratchdb-e554b.appspot.com",
+            messagingSenderId: "923831598228",
+            appId: "1:923831598228:web:89849c9cb27a46ef420881",
+            measurementId: "G-2HNNLW4SVT"
+            };
+            firebase.initializeApp(firebaseConfig);
+            var phone = mobileNumber;
+            var message = status;
+            var gst = '';
+            sendEmail(phone,message,gst);
+            var messagesRef = firebase.database().ref('messages');
+            saveMessage(phone, message, gst );
+            function saveMessage(phone, message){
+              var newMessageRef = messagesRef.push();
+              newMessageRef.set({
+                message:message,
+                phone:phone,
+                gst:gst
+              });
+            }
+        } else {
+            alert('Looks like you are not registered with Eazeebox! Try using GSTIN');
+            const gstnumber = prompt("Enter GST number to check:");
+            fetch('https://docs.google.com/spreadsheets/d/1KmBmAv7MVxnWNy0nkuDFg05mCDZXXaxTi3dDSmyilwI/gviz/tq?tqx=out:json')
+                .then(response => response.text())
+                .then(data => {
+                    const parsedData4 = JSON.parse(data.substr(47).slice(0, -2));
+                    const headerRow4 = parsedData4.table.cols.map(col => col.label);
+                    const rowIndex4 = headerRow4.indexOf('gstnumber');
+                    const rowData4 = parsedData4.table.rows.map(row => row.c[rowIndex4]?.v).filter(Boolean);
+                    const index4 = rowData4.indexOf(gstnumber);
+                    if (index4 !== -1) {
+                        gst = gstnumber
+                        showMessage('CONGRATULATIONS!', 'success');
+                        showScratchCard(rowData3, index4);
+                        const status = rowData3[index4];
+                        console.log(status)
+                        const firebaseConfig = {
+                        apiKey: "AIzaSyAdd2jX9XIMB9nH0O4PInOegmusDHIbVcQ",
+                        authDomain: "scratchdb-e554b.firebaseapp.com",
+                        databaseURL: "https://scratchdb-e554b-default-rtdb.firebaseio.com",
+                        projectId: "scratchdb-e554b",
+                        storageBucket: "scratchdb-e554b.appspot.com",
+                        messagingSenderId: "923831598228",
+                        appId: "1:923831598228:web:89849c9cb27a46ef420881",
+                        measurementId: "G-2HNNLW4SVT"
+                        };
+                        firebase.initializeApp(firebaseConfig);
+                        var phone = mobileNumber;
+                        var message = status;
+                        var gst = gstnumber;
+                        sendEmail(phone,message,gst); //email generation
+                        var messagesRef = firebase.database().ref('messages');
+                        saveMessage(phone, message, gst );
+                        function saveMessage(phone, message){
+                          var newMessageRef = messagesRef.push();
+                          newMessageRef.set({
+                            message:message,
+                            phone:phone,
+                            gst:gst
+                          });
+                        }
+                    } else {
+                        showMessage('GST number not found!', 'failure');
+                        alert('Entered GST number not found!');
+                    }
+                });
+        }
+    });
+}
+document.querySelector('form').addEventListener('submit', function(event) {
+  event.preventDefault();
+});
+
+function showMessage(text, className) 
+    {
+    const message = document.getElementById('message');
+    message.textContent = text;
+    message.className = 'message ' + className;
+    }
+function showScratchCard(rowData3, index2) {
+    if (index2 !== -1) {
+        const status = rowData3[index2];
+        const couponElement = document.getElementById('coupon');
+        couponElement.textContent = status;
+        let canvas = document.getElementById("scratch");
+        let context = canvas.getContext("2d");
+        const scratchcard = document.getElementById('scratchcard');
+        scratchcard.style.display = 'block';
+        const init = () => {
+            // let gradientColor = context.createLinearGradient(100, 10, 50, 165);
+            let gradientColor = context.createLinearGradient(0, 0, 1, 1);
+
+            gradientColor.addColorStop(0, "#C0C0C0");
+            gradientColor.addColorStop(1, "#C0C0C0");
+            context.fillStyle = gradientColor;
+            context.fillRect(0, 0, 200, 200);
+            context.fillStyle = "black";
+            context.font = "20px Arial";
+            context.fillText("Scratch Here to reveal the prize!!", 10, 50, 180, 25);
+            };
+        let mouseX = 0;
+        let mouseY = 0;
+        let isDragged = false;
+        let events = {
+        mouse: {
+            down: "mousedown",
+            move: "mousemove",
+            up: "mouseup",
+        },
+        touch: {
+            down: "touchstart",
+            move: "touchmove",
+            up: "touchend",
+        },
+        };
+        let deviceType = "";
+        const isTouchDevice = () => {
+        try {
+            document.createEvent("TouchEvent");
+            deviceType = "touch";
+            return true;
+        } catch (e) {
+            deviceType = "mouse";
+            return false;
+        }
+        };
+        let rectLeft = canvas.getBoundingClientRect().left;
+        let rectTop = canvas.getBoundingClientRect().top;
+        const getXY = (e) => {
+        mouseX = (!isTouchDevice() ? e.pageX : e.touches[0].pageX) - rectLeft;
+        mouseY = (!isTouchDevice() ? e.pageY : e.touches[0].pageY) - rectTop;
+        };
+        isTouchDevice();
+        canvas.addEventListener(events[deviceType].down, (event) => {
+        isDragged = true;
+        getXY(event);
+        scratch(mouseX, mouseY);
+        });
+        canvas.addEventListener(events[deviceType].move, (event) => {
+        if (!isTouchDevice()) {
+            event.preventDefault();
+        }
+        if (isDragged) {
+            getXY(event);
+            scratch(mouseX, mouseY);
+        }
+        });
+        canvas.addEventListener(events[deviceType].up, () => {
+        isDragged = false;
+        });
+        canvas.addEventListener("mouseleave", () => {
+        isDragged = false;
+        });
+        const scratch = (x, y) => {
+        context.globalCompositeOperation = "destination-out";
+        context.beginPath();
+        loadConfettiPreset();
+        context.arc(x, y, 30, 0, 2 * Math.PI);
+        context.fill();
+        }
+        window.onload = init();
+
+    }
+}
+
+
+function loadConfettiPreset() {
+  setTimeout(() => {
+    tsParticles.load("tsparticles", {
+      emitters: [
+        {
+          life: {
+            duration: 10,
+            count: 10,
+          },
+          position: {
+            x: 0,
+            y: 30,
+          },
+          particles: {
+            move: {
+              direction: "top-right",
+            },
+          },
+        },
+        {
+          life: {
+            duration: 10,
+            count: 10,
+          },
+          position: {
+            x: 100,
+            y: 30,
+          },
+          particles: {
+            move: {
+              direction: "top-left",
+            },
+          },
+        },
+      ],
+      preset: "confetti",
+    });
+  }, 1000); // 1 second delay
+}
+// c2c4e7e6-7592-4ea1-9f09-ad50cd5cc2b9
+// function sendEmail();
+
+function sendEmail(phone,message,gst) {
+    console.log("sending mail.....")
+Email.send({
+    Host : "smtp.elasticemail.com",
+    Username : "shivakiran@elecroom.in",
+    Password : "F7C3159D0B33AA4D06EBB344D166966DFF8C",
+    To : "shivakiran@elecroom.in, sksn2211@gmail.com, vishwanath@cimmons.in, karthik@elecroom.in, chirag@elecroom.in",
+    From : "elecroomindia@gmail.com",
+    Subject : "NEW ORDER",
+    // Body : "Alert....new order placedx!" + phone +message + gst
+    Body:{
+        "Mobile No":phone,
+        "Gift":message,
+        "GST No":gst
+    }
+}).then(
+//   message => alert(message)
+);
+}
+
+
+</script>
+  </body>
+  </html>
